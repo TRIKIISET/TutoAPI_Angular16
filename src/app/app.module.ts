@@ -6,10 +6,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddproductComponent } from './Application/components/addproduct/addproduct.component';
 import {HttpClientModule} from '@angular/common/http';
 
+import { ListemployesComponent } from './EXERCICE/components/listemployes/listemployes.component';
+import { EmployeComponent } from './EXERCICE/components/employe/employe.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    AddproductComponent
+    AddproductComponent,
+    EmployeComponent,
+    ListemployesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+<div class="container">
+    <h2> Ajout d'un employé</h2>
+    <form [formGroup]="employeForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label> Donnez le matricule</label>
+            <input type="text" class="form-control" formControlName="matricule">
+        </div>
+
+        <div>
+            <label> Donnez le nom</label>
+            <input type="text" class="form-control" formControlName="nom">
+        </div>
+        
+         <div class="p-2 bg-light rounded">
+            <strong>Affiliation</strong>
+            <div formGroupName="affiliation">
+                <div>
+                    <label> Choisissez le département</label>
+                    <input type="radio"  value="TI" formControlName="departement"> IT
+                    <input type="radio" value="Finance"  formControlName="departement"> Finance
+                </div>
+                <div>
+                    <label> Donnez la fonction</label>
+                    <select class="form-select" formControlName="fonction">
+                        <option *ngFor="let f of lesFonctions" [value]="f"> {{f}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+       
+        <strong>Liste des diplômes</strong>
+        <div formArrayName="diplomes">
+            <div *ngFor = "let d of lesDiplomes.controls; index as i" [formGroupName]="i">
+                <label>Intitulé du diplôme</label> 
+                <input type="text" formControlName="intitule">
+                <label>Année un diplôme</label> 
+                <input type="number" formControlName="annee">
+                <button class="btn btn-warning" (click)="supprimerDiplome(i)">Supprimer</button>
+            </div> 
+        </div>
+        <input type="button" value="Ajouter Diplôme" class="btn btn-dark btn-sm" (click)="ajouterDiplome()"> 
+    <br>
+        <button class="btn btn-primary">Ajouter Employé</button>
+        <input type="button" class="btn btn-secondary" value="Vider" (click)="onReset()">
+
+    </form>
+</div>
+<app-listemployes></app-listemployes>

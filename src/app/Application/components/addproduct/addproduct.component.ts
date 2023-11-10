@@ -3,7 +3,7 @@ import { Category } from '../../enum/category';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../classes/product';
-// import { Product } fro../../../../classes/productuct';
+
 
 @Component({
   selector: 'app-addproduct',
