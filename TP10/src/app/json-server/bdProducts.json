@@ -19,22 +19,6 @@
         "Sfax",
         "Nabeul"
       ]
-    },
-    {
-      "id": 3,
-      "libelle": "",
-      "prix": 0,
-      "madeIn": "Tunisie",
-      "categorie": "Accessoires",
-      "nouveau": false
-    },
-    {
-      "id": 4,
-      "libelle": "",
-      "prix": 0,
-      "madeIn": "Tunisie",
-      "categorie": "Accessoires",
-      "nouveau": false
     }
   ]
 }

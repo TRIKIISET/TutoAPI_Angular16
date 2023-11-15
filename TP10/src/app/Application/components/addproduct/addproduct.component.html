@@ -5,15 +5,26 @@
             <label> Identifiant du produit </label>
             <input type="number" class="form-control" name="id" formControlName="id">
         </div>
+        <div *ngIf="idProduct?.invalid && idProduct?.dirty" class="alert alert-danger">
+            L'identifiant doit être un nombre
+        </div>
         <div>
             <label>Libellé</label>
             <input type="text" class="form-control" name="lib" formControlName="libelle">
+        </div>
+        <div *ngIf="isValidPattern()" class="alert alert-warning">
+            Le libellé doit commencer par une majuscule suivie d'au moin 1 lettre
+        </div>
+        <div *ngIf="isRequiredLibelle()" class="alert alert-danger">
+            Le libellé est un champ obligatoire
         </div>
         <div>
             <label>Prix</label>
             <input type="number" class="form-control" name="prix" formControlName="prix">
         </div>
-
+        <div *ngIf="priceProduct?.invalid && priceProduct?.dirty" class="alert alert-danger">
+            Le champ prix n'est pas valide
+        </div>
         <div>
             <label> Made In </label>
             <label>
@@ -44,12 +55,10 @@
             class="btn btn-secondary btn-sm" (click)="onAjouter()"> <br>
 
         </div>
-        <input type="submit" class="btn btn-success" value="Ajouter">
+        <input type="submit" class="btn btn-success" value="Ajouter" [disabled]="productForm.invalid">
         <input type="button" class="btn btn-warning" value="Effacer" (click)="onResetForm()">
 
     </form>
-
-    <!-- {{productForm.value |json}} -->
 
     {{lesProduits | json}}
 

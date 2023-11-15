@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../enum/category';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../classes/product';
 import { debounceTime } from 'rxjs/operators';
@@ -33,9 +33,9 @@ lesProduits!: Product[];
     )
 
     this.productForm = this.fb.nonNullable.group({
-      id: [0],
-      libelle: ['Stylo'],
-      prix: [0],
+      id: [ 0,Validators.required],
+      libelle: ['', [Validators.required, Validators.pattern('[A-Z][a-zA-Z]+$')]],
+      prix: [0, [Validators.required,Validators.min(0.1)]],
       madeIn:['Tunisie'],
       categorie: [Category.Accessoires],
       nouveau:[true],
@@ -57,29 +57,45 @@ lesProduits!: Product[];
     console.log(this.productForm.controls['libelle'].value);
     console.log(this.productForm.value["madeIn"]);
 
-
-    const formData = { ...this.productForm.value };
+    /* Supposons que les pointsVente étaient facultatifs */
+  /*  const formData = { ...this.productForm.value };
     if(this.lesPointsVente.controls.length==0)
      delete formData.pointsVente;
     this.productService.addProduct(formData).subscribe
-    ( data => this.lesProduits.push(data))
-    //
+    ( data => this.lesProduits.push(data))*/
+    
      this.productService.addProduct(this.productForm.value).subscribe
-    // ( data => this.lesProduits.push(data))
+    ( data => this.lesProduits.push(data))
   }
 
   onResetForm(){
     this.productForm.reset({categorie:Category.Fourniture, madeIn:'Autre'});
     this.lesPointsVente.clear();
   }
-
+  public get idProduct(){
+    return this.productForm.get('id');
+  }
+  public get libProduct(){
+    return this.productForm.get('libelle');
+  }
+  public get priceProduct(){
+    return this.productForm.get('prix');
+  }
   public get lesPointsVente(){
     return this.productForm.get('pointsVente') as FormArray;
   }
 
   onAjouter(){
-    this.lesPointsVente.push(this.fb.control(''))
+    this.lesPointsVente.push(this.fb.control('',[Validators.required,Validators.minLength(2)]))
     // Autre possibilité 
    // this.lesPointsVente.push(new FormControl(''))
+  }
+
+  isValidPattern(){
+    return this.libProduct?.errors?.['pattern'] && this.libProduct?.dirty; 
+  }
+
+  isRequiredLibelle(){
+    return this.libProduct?.errors?.['required'] && this.libProduct?.dirty; 
   }
 }
