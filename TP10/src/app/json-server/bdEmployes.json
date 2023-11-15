@@ -1,0 +1,32 @@
+{
+  "employes": [
+    {
+      "matricule": "M589",
+      "nom": "Manel Mhamdi",
+      "affiliation": {
+        "fonction": "Technicien",
+        "departement": "TI"
+      },
+      "id": 1
+    },
+    {
+      "matricule": "M589",
+      "nom": "Ahmed Hammmami",
+      "affiliation": {
+        "fonction": "PDG",
+        "departement": "TI"
+      },
+      "diplomes": [
+        {
+          "intitule": "Bac",
+          "annee": 2021
+        },
+        {
+          "intitule": "Ingénieur",
+          "annee": 2027
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
