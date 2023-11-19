@@ -1,0 +1,8 @@
+<h1> Liste des devises</h1>
+<ul>
+    <li *ngFor="let d of devises$|async">
+        <!-- {{d |json}} -->
+        {{d.symbol}} - {{d.name}}
+    </li>
+</ul>
+

@@ -1,0 +1,11 @@
+<h1> Liste des universités</h1>
+<label>Donnez le pays</label>
+<input type="text" #txt>
+<button (click)="afficher(txt.value)">Afficher</button>
+<ol>
+    <li *ngFor="let univ of liste$ |async">
+        <!-- {{univ |json}} -->
+        {{univ.name}}
+    </li>
+</ol>
+

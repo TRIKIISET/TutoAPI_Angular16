@@ -1,0 +1,22 @@
+<h1>Conversion de devises</h1>
+
+<form [formGroup]="conversionForm" (ngSubmit)="convertir()">
+    From: <select formControlName="from">
+        <option *ngFor="let d of devises$ |async" [value]="d.symbol">
+            {{d.symbol}}
+        </option>
+    </select>
+    To: <select formControlName="to">
+        <option *ngFor="let d of devises$ |async" [value]="d.symbol">
+            {{d.symbol}}
+        </option>
+    </select>
+    <br>
+
+    Montant <input type="number" value="0" formControlName="amount">
+    <input type="submit" value="convertir">
+
+</form>
+<div *ngIf="montantConverti">
+    Le résultat de la conversion est: {{montantConverti}}
+</div>
